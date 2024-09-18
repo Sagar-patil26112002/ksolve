@@ -11,13 +11,15 @@ const path = require("path");
 const methodOverride = require("method-override");
 const flash = require("connect-flash");
 const passport = require("passport");
-const passportConfig = require('./config/passportConfig'); // Ensure passportConfig is correctly imported
+const passportConfig = require('./config/passportConfig');
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const loginAndRegister = require("./routes/loginAndRegister.js");
 const CloudRouter = require('./routes/cloudManage.js');
 const instructorRouter = require('./routes/instructor.js');
+const classRoutes = require('./routes/classRoute.js'); 
+const lectureRoute = require('./routes/lectureRouter.js');  
 const Instructor = require("./models/instructor.js");
 const Student = require("./models/user.js");
 const multer = require('multer');
@@ -82,6 +84,8 @@ app.use((req, res, next) => {
 app.use("/", loginAndRegister);
 app.use("/upload", CloudRouter);
 app.use("/instructor", instructorRouter);
+app.use('/classes', classRoutes);
+app.use('/lectures', lectureRoute);
 
 app.get("/", (req, res)=>{
     res.render("demo/empty.ejs");

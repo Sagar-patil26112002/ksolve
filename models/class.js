@@ -9,22 +9,13 @@ const classSchema = new Schema({
     description: {
         type: String
     },
-    instructor: {
+    lectures: [{  // Define lectures as an array of ObjectId, referencing the Lecture model
         type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    units: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Unit'
+        ref: 'Lecture'
     }],
     sessions: [{
         type: Schema.Types.ObjectId,
         ref: 'Session'
-    }],
-    students: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
     }]
 });
 

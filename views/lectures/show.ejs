@@ -1,0 +1,15 @@
+<!-- views/lectures/show.ejs -->
+<% layout('layouts/boilerplate') %>
+<h1>Lecture: <%= lecture.title %></h1>
+
+<p>Description: <%= lecture.description %></p>
+
+<!-- Video Display -->
+<% if (lecture.videoUrl) { %>
+    <video width="400" controls>
+        <source src="<%= lecture.videoUrl %>" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+<% } else { %>
+    <p>No video uploaded yet.</p>
+<% } %>

@@ -14,4 +14,7 @@ router.get("/login", loginAuthentication.renderLogin);
 // Login success route
 router.post("/login", loginAuthentication.loginSuccess);
 
+//logout user
+router.get("/logout", loginAuthentication.logoutSuccess);
+
 module.exports = router;

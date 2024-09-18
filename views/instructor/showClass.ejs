@@ -1,0 +1,52 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Class: <%= classItem.title %></h2>
+            <p><strong>Description:</strong> <%= classItem.description %></p>
+            <a href="/classes/<%= classItem._id %>/edit" class="btn btn-warning">Edit Class</a>
+            <form action="/classes/<%= classItem._id %>?_method=DELETE" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-danger">Delete Class</button>
+            </form>
+            <a href="/classes" class="btn btn-secondary">Back to Classes</a>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h4>Lectures</h4>
+            <ul class="list-group">
+                <% if (classItem.lectures.length > 0) { %>
+                    <% classItem.lectures.forEach(lecture => { %>
+                        <li class="list-group-item">
+                            <h5><%= lecture.title %></h5>
+                            <p><%= lecture.content %></p>
+                            <a href="<%= lecture.videoUrl %>" target="_blank" class="btn btn-secondary">Watch Video</a>
+                        </li>
+                    <% }); %>
+                <% } else { %>
+                    <li class="list-group-item">No lectures available for this class.</li>
+                <% } %>                
+            </ul>
+            <a href="/lectures/new" class="btn btn-success mt-3">Add New Lecture</a>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Sessions</h4>
+            <ul class="list-group">
+                <% if (sessions.length > 0) { %>
+                    <% sessions.forEach(session => { %>
+                        <li class="list-group-item">
+                            <h5>Session: <%= session.title %></h5>
+                            <p>Date: <%= session.date %></p>
+                        </li>
+                    <% }); %>
+                <% } else { %>
+                    <li class="list-group-item">No sessions available for this class.</li>
+                <% } %>                
+            </ul>
+            <a href="/sessions/new" class="btn btn-success mt-3">Add New Session</a>
+        </div>
+    </div>
+</div>

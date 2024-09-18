@@ -1,39 +1,48 @@
 <% layout('layouts/boilerplate') %>
 
 <div class="container mt-5">
-    <h2>Welcome, <%= instructor.username %>!</h2>
-    <div class="row mt-4">
-        <div class="col-md-6">
-            <h4>Your Classes</h4>
-            <ul class="list-group">
-                <% if (classes.length > 0) { %>
-                    <% classes.forEach(classItem => { %>
-                        <li class="list-group-item">
-                            <h5><%= classItem.title %></h5>
-                            <p><%= classItem.description %></p>
-                            <a href="/classes/<%= classItem._id %>" class="btn btn-primary">View Class</a>
-                        </li>
-                    <% }); %>
-                <% } else { %>
-                    <li class="list-group-item">You haven't created any classes yet.</li>
-                <% } %>
-            </ul>
+    <div class="container mt-5">
+        <h2>Welcome, <%= instructor.username %>!</h2>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <a href="/classes/create" class="btn btn-primary">Create New Class</a>
+            </div>
         </div>
-
-        <div class="col-md-6">
-            <h4>Upcoming Sessions</h4>
-            <ul class="list-group">
-                <% if (upcomingSessions.length > 0) { %>
-                    <% upcomingSessions.forEach(session => { %>
-                        <li class="list-group-item">
-                            <h5>Session: <%= session.title %></h5>
-                            <p>Date: <%= session.date %></p>
-                        </li>
-                    <% }); %>
-                <% } else { %>
-                    <li class="list-group-item">No upcoming sessions scheduled.</li>
-                <% } %>
-            </ul>
+        <!-- Existing dashboard content -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h4>Your Classes</h4>
+                <ul class="list-group">
+                    <% if (classes.length > 0) { %>
+                        <% classes.forEach(classItem => { %>
+                            <li class="list-group-item">
+                                <h5><%= classItem.title %></h5>
+                                <p><%= classItem.description %></p>
+                                <a href="/classes/<%= classItem._id %>" class="btn btn-primary">View Class</a>
+                            </li>
+                        <% }); %>
+                    <% } else { %>
+                        <li class="list-group-item">You haven't created any classes yet.</li>
+                    <% } %>
+                </ul>
+            </div>
+    
+            <div class="col-md-6">
+                <h4>Upcoming Sessions</h4>
+                <ul class="list-group">
+                    <% if (upcomingSessions.length > 0) { %>
+                        <% upcomingSessions.forEach(session => { %>
+                            <li class="list-group-item">
+                                <h5>Session: <%= session.title %></h5>
+                                <p>Date: <%= session.date %></p>
+                            </li>
+                        <% }); %>
+                    <% } else { %>
+                        <li class="list-group-item">No upcoming sessions scheduled.</li>
+                    <% } %>
+                </ul>
+            </div>
         </div>
     </div>
+      
 </div>

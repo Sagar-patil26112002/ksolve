@@ -58,3 +58,21 @@ module.exports.loginSuccess = (req, res, next) => {
         });
     })(req, res, next);
 };
+
+
+module.exports.logoutSuccess = (req, res)=>{
+    req.logOut((err)=>{
+        if(err){
+            return next(err);
+        }
+        
+        req.session.destroy((err) => {
+            if (err) {
+                console.error('Error destroying session:', err);
+                return res.redirect('/'); // Redirect to home or error page
+            }
+            res.clearCookie('connect.sid'); // Clear the session cookie
+            res.redirect('/'); // Redirect to listings page
+        });
+    })
+};
